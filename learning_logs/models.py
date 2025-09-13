@@ -9,3 +9,13 @@ class Topic(models.Model):
         """Returns string representation of model"""
         return self.text
 
+class Entry(models.Model):
+    """add specifics about topics"""
+    topic = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'entries'
+
+    def __str__(self):
+        """returns simple string for entry"""
+        return f"{self.text[:50]}..."
