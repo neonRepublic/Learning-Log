@@ -1,5 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render 
 
-def index(request):
-    """home page for learning logs"""
-    return render(request, 'learning_logs.xhtml')
+from .models import Topic
+
+def index(request): 
+    """The home page for Learning Log.""" 
+    return render(request, 'learning_logs/index.xhtml')
+
+def topics (request):
+    """show all topics"""
+    topics = Topic.objects.order_by('date_added')
+    context = {"topics": topics}
+    return render(request, 'learning_logs/topics.xhtml', context)
